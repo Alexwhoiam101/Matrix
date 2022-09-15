@@ -5,9 +5,9 @@
 
 using namespace std;
 
-int main() { 
+int main() {
     int n, m;
-    cout << "Input how many rows and columns: "<<endl;
+    cout << "Input how many rows and columns: " << endl;
     n = getIntNoZero("Rows");
     m = getIntNoZero("Colums");
 

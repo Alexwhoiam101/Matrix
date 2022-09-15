@@ -8,9 +8,9 @@
 
 using namespace std;
 
-int compare_up(int x1, int x2) { return  x1 - x2; }
+int compare_up(int x1, int x2) { return x1 - x2; }
 
-int compare_no_up(int x1, int x2) { return  x2 -  x1; }
+int compare_no_up(int x1, int x2) { return x2 - x1; }
 
 void create_mat(Matrix *mat, int row, int col, int maxsize) {
     mat->n = row;
@@ -27,9 +27,9 @@ void create_mat(Matrix *mat, int row, int col, int maxsize) {
 }
 
 void matrix_clear(Matrix *mat) {
-    delete [] mat->col;
-    delete [] mat->val;
-    delete [] mat->row;
+    delete[] mat->col;
+    delete[] mat->val;
+    delete[] mat->row;
 }
 
 template<typename T>
@@ -135,7 +135,7 @@ void init(Matrix *mat) {
         row = getIntNoZero("row");
         col = getIntNoZero("column");
         val = getInt("value");
-        cout<<endl;
+        cout << endl;
 
         switch (add(mat, row, col, val)) {
             case 1:
@@ -162,22 +162,16 @@ void init(Matrix *mat) {
     } while (1);
 }
 
-//template<class Comp>
-void my_bubble_sort(int* arr, int begin, int end, int flag)//Comp&& f)
+void my_bubble_sort(int *arr, int begin, int end, int flag)
 {
     int temp;
 
     for (int i = begin; i < end; i++) {
-        //cout<<"1";
         for (int j = begin; j < end - 1; j++) {
-            //if (f(arr[j], arr[j+1])) {
-            //cout<<endl<<arr[j]<<" "<<arr[j+1]<<endl;
-            if(flag && (arr[j] > arr[j+1])){
-                //cout<<"swap";
-                swap(arr[j], arr[j+1]);
-            }else if(!flag && arr[j] < arr[j+1]){
-                swap(arr[j], arr[j+1]);
-                //cout<<"swap";
+            if (flag == 1 && (arr[j] > arr[j + 1])) {
+                swap(arr[j], arr[j + 1]);
+            } else if (flag == 0 && (arr[j] < arr[j + 1])) {
+                swap(arr[j], arr[j + 1]);
             }
         }
     }
@@ -198,14 +192,10 @@ void SortByMax(Matrix *mat) {
 
     int i = mat->row[max_row];
     int j = mat->row[max_row + 1];
-    //cout<<i<<" "<<j<<endl;
-    auto less = [](int lh, int rh) { return lh < rh; };
-    auto up = [](int lh, int rh) { return lh > rh; };
-    if (mat->val[i] > 0) {
+    my_bubble_sort(mat->col, i, j, 1);//up
+    if ((mat->val)[i] > 0) {
         my_bubble_sort(mat->val, i, j, 1);//up
-        my_bubble_sort(mat->col, i, j, 1);//up
-    }else {
+    } else {
         my_bubble_sort(mat->val, i, j, 0);//less
-        my_bubble_sort(mat->col, i, j, 0);//less
     }
 }
